@@ -1,0 +1,114 @@
+---
+services:
+  setup:
+    depends_on:
+      virtual-assets:
+        condition: service_started
+      dispatcher:
+        condition: service_started
+      gateway:
+        condition: service_started
+      postgresql:
+        condition: service_started
+      gateway-migrate:
+        condition: service_completed_successfully
+      gateway-superuser:
+        condition: service_completed_successfully
+    build: .
+
+  virtual-assets:
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    build: ../virtual-assets
+    ports:
+      - 8080:8080
+    environment:
+      TL_DATABASE_DSN: postgres://terralayr:password@postgresql/terralayr
+      TL_DISPATCHER_BASE_URL: dispatcher:8081
+      TL_MVP_BASE_URL: gateway:8000
+      TL_MVP_USERNAME: bob
+      TL_MVP_PASSWORD: password
+
+  dispatcher:
+    build: ../dispatcher
+    ports:
+      - 8081:8080
+    environment:
+      TL_MVP_BASE_URL: gateway:8000
+      TL_MVP_USERNAME: bob
+      TL_MVP_PASSWORD: password
+      TL_TERRALAYR_SENDER_EMAIL: dummy@dummy.com
+      TL_TERRALAYR_OPERATIONS_EMAILS: dummy@dummy.com,dummy-else@dummy.com
+
+  gateway:
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    build: ../mvp
+    ports:
+      - 8000:8000
+    tty: true
+    environment:
+      DB_NAME: terralayr
+      DB_USER: terralayr
+      DB_PASSWORD: password
+      DB_HOST: postgresql
+      DB_PORT: 5432
+      TL_VIRTUAL_ASSETS_BASE_URL: virtual-assets:8080
+
+  gateway-migrate:
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    build: ../mvp
+    command:
+      - python
+      - manage.py
+      - migrate
+    environment:
+      DB_NAME: terralayr
+      DB_USER: terralayr
+      DB_PASSWORD: password
+      DB_HOST: postgresql
+      DB_PORT: 5432
+
+  gateway-superuser:
+    depends_on:
+      gateway-migrate:
+        condition: service_completed_successfully
+    build: ../mvp
+    command:
+      - python
+      - manage.py
+      - createsuperuser
+      - --noinput
+    environment:
+      DB_NAME: terralayr
+      DB_USER: terralayr
+      DB_PASSWORD: password
+      DB_HOST: postgresql
+      DB_PORT: 5432
+      DJANGO_SUPERUSER_USERNAME: bob
+      DJANGO_SUPERUSER_EMAIL: bob@trlyr.com
+      DJANGO_SUPERUSER_PASSWORD: password
+
+  postgresql:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_DB: terralayr
+      POSTGRES_USER: terralayr
+      POSTGRES_PASSWORD: password
+    healthcheck:
+      test:
+        - CMD
+        - psql
+        - -U
+        - terralayr
+        - -d
+        - terralayr
+      interval: 1s
+      timeout: 10s
+      retries: 10
+      start_period: 0s
+      start_interval: 0s

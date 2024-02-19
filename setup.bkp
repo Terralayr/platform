@@ -1,0 +1,3 @@
+#!/bin/sh
+docker exec -t platform-gateway-1 /app/setuplocal \
+  && python scripts/create_test_setup.py
