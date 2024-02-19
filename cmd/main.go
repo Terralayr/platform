@@ -25,10 +25,6 @@ func main() {
 		return
 	}
 	log.Printf("Physical asset: %v", physicalAsset)
-	log.Printf("Physical asset: %v", physicalAsset.String())
-	log.Printf("Physical asset: %v", physicalAsset.Name())
-	log.Printf("Physical asset: %v", physicalAsset.EnergyCapacity())
-	log.Printf("Physical asset: %v", physicalAsset.LiveDispatch())
 
 	block, err := svc.CreateBlock(
 		physicalAsset.ID(),
