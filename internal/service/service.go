@@ -25,7 +25,7 @@ func New() (*Service, error) {
 	}, nil
 }
 
-func (s *Service) CreateUser() (*entity.User, error) {
+func (s *Service) CreateUser() (*entity.UserID, error) {
 	return s.Mvp.CreateUser(
 		"alice",
 		"alice@dummy.com",

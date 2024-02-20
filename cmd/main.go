@@ -12,12 +12,12 @@ func main() {
 		return
 	}
 
-	user, err := svc.CreateUser()
+	userID, err := svc.CreateUser()
 	if err != nil {
 		log.Printf("Error creating user: %v", err)
 		return
 	}
-	log.Printf("User: %v", user)
+	log.Printf("User: %v", userID)
 
 	physicalAsset, err := svc.CreatePhysicalAsset()
 	if err != nil {
@@ -28,7 +28,7 @@ func main() {
 
 	block, err := svc.CreateBlock(
 		physicalAsset.ID(),
-		user.ID,
+		*userID,
 	)
 	if err != nil {
 		log.Printf("Error creating block: %v", err)
