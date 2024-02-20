@@ -46,7 +46,7 @@ func (s *Service) CreatePhysicalAsset() (*entity.PhysicalAsset, error) {
 func (s *Service) CreateBlock(
 	physicalAssetID entity.PhysicalAssetID,
 	userID entity.UserID,
-) (*entity.Block, error) {
+) (*mvp.UserBlock, error) {
 	clk := clock.NewStd()
 
 	start := clk.StartOfTomorrow()

@@ -36,5 +36,7 @@ func main() {
 	}
 	log.Printf("Block: %v", block)
 
+	log.Printf("Update schedule URL: localhost:8000/users/%v/updateBlock/%v", block.UserID, block.ID)
+
 	log.Println("Setup complete")
 }

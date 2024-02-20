@@ -4,7 +4,7 @@ go 1.21.4
 
 require (
 	github.com/Terralayr/entity-library v1.8.0
-	github.com/Terralayr/mvp v1.2.0-test-12
+	github.com/Terralayr/mvp v1.2.0-test-15
 	github.com/Terralayr/trlyb v1.5.0
 )
 

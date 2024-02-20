@@ -25,7 +25,7 @@ services:
       - 8080:8080
     environment:
       TL_DATABASE_DSN: postgres://terralayr:password@postgresql/terralayr
-      TL_DISPATCHER_BASE_URL: dispatcher:8081
+      TL_DISPATCHER_BASE_URL: dispatcher:8080
       TL_MVP_BASE_URL: gateway:8000
       TL_MVP_USERNAME: bob
       TL_MVP_PASSWORD: password
@@ -40,6 +40,7 @@ services:
       TL_MVP_PASSWORD: password
       TL_TERRALAYR_SENDER_EMAIL: dummy@dummy.com
       TL_TERRALAYR_OPERATIONS_EMAILS: dummy@dummy.com,dummy-else@dummy.com
+      TL_VIRTUAL_ASSETS_BASE_URL: virtual-assets:8080
 
   gateway:
     depends_on:

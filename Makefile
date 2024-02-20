@@ -12,12 +12,12 @@ build: tidy fmt
 fmt:
 	@golines --shorten-comments --base-formatter gofmt -m 100 -w .
 
-docker-build:
+docker-build: tidy
 	docker build \
 		--ssh default=${GH_SSH_PK_PATH} \
 		.
 
-up: down tidy
+up: down tidy docker-build
 	docker compose up --build
 
 down:

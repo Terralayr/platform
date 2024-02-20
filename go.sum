@@ -1,7 +1,7 @@
 github.com/Terralayr/entity-library v1.8.0 h1:XoPc8+ah+N3ihwZ0RM4dc+idSMrHLwpLrJzTqoCpENU=
 github.com/Terralayr/entity-library v1.8.0/go.mod h1:eGLEom3sSx8J6NBJBn6Dy+pkRMpd1CMRqEtu7HDXjPI=
-github.com/Terralayr/mvp v1.2.0-test-12 h1:vB+bg3Eb2XCWwZIpFf95WWRbY9Yg/rKlmByXFChwVPk=
-github.com/Terralayr/mvp v1.2.0-test-12/go.mod h1:N3I6M7p8BoXxHKfrUgDhT4MKQ9Kzj+qZHYFT5pecWKU=
+github.com/Terralayr/mvp v1.2.0-test-15 h1:x5qmioygv+1I7fCSaxDGt6K2UqJHomhD7Vnr8NzGcS8=
+github.com/Terralayr/mvp v1.2.0-test-15/go.mod h1:N3I6M7p8BoXxHKfrUgDhT4MKQ9Kzj+qZHYFT5pecWKU=
 github.com/Terralayr/trlyb v1.5.0 h1:uB8aSkGBFqxKyoZbsEyzoEglaQwLgp9z0kLznIuoNbA=
 github.com/Terralayr/trlyb v1.5.0/go.mod h1:ZoIOmeXc/FwzDuAoTndTRM9Ks9//eUR4hgCEztBUiME=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
