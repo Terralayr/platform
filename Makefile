@@ -18,7 +18,7 @@ docker-build: tidy
 		.
 
 up: down tidy docker-build
-	docker compose up --build
+	SSH_AUTH_SOCK=${GH_SSH_PK_PATH} docker compose up --build
 
 down:
 	docker compose down --volumes
