@@ -33,6 +33,21 @@ services:
       TL_MVP_USERNAME: bob
       TL_MVP_PASSWORD: password
 
+  virtual-assets-migration:
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    image: arigaio/atlas:latest
+    command:
+      - migrate
+      - apply
+      - --url
+      - postgres://terralayr:password@postgresql/terralayr?sslmode=disable
+      - --dir
+      - file://migrations
+    volumes:
+      - ../virtual-assets/migrations/:/migrations
+
   dispatcher:
     build:
       context: ../dispatcher
