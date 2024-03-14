@@ -17,3 +17,7 @@ make up
 Should bring up the relevant services, apply migrations, and fill out some test data.
 
 You should then be able to hit the gateway service at `localhost:8000`
+
+### ssh
+
+Make sure to follow [this ssh setup](https://www.notion.so/trlyr/Getting-Started-2d2201445b8749d58a2db059a10b18d3?pvs=4#58eba043a7cc45519b7208e0188589a2) to properly use the `Makefile` commands.

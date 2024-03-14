@@ -1,5 +1,4 @@
 TL_GOPRIVATE=github.com/Terralayr/*
-GH_SSH_PK_PATH=/home/theo/.ssh/trlyr-github
 
 tidy:
 	@go env -w GOPRIVATE=${TL_GOPRIVATE}
@@ -14,11 +13,11 @@ fmt:
 
 docker-build: tidy
 	docker build \
-		--ssh default=${GH_SSH_PK_PATH} \
+		--ssh default \
 		.
 
 up: down tidy docker-build
-	SSH_AUTH_SOCK=${GH_SSH_PK_PATH} docker compose up --build
+	docker compose up --build
 
 down:
 	docker compose down --volumes
