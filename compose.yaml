@@ -14,7 +14,10 @@ services:
         condition: service_completed_successfully
       gateway-superuser:
         condition: service_completed_successfully
-    build: .
+    build: 
+      context: .
+      ssh:
+        - default
 
   virtual-assets:
     depends_on:
