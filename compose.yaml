@@ -35,6 +35,23 @@ services:
       TL_MVP_BASE_URL: gateway:8000
       TL_MVP_USERNAME: bob
       TL_MVP_PASSWORD: password
+      
+  auth:
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    build:
+      context: ../auth
+      ssh:
+        - default
+    ports:
+      - 8082:8080
+    environment:
+      TL_DATABASE_DSN: postgres://terralayr:password@postgresql/terralayr
+      TL_AUTH0_DOMAIN: terralayr-dev.eu.auth0.com
+      TL_AUTH0_CLIENT_ID: A9sqPOWJ4HbBmtPu8c3C0yUMwxoo78d7
+      TL_AUTH0_CLIENT_SECRET: ZRyBgCk0SypBASdHl71okxHJ-BAMVHu7hSxAXVEEwjcfKBWQ9jmrR8SDyEeOsm5c
+
 
   virtual-assets-migration:
     depends_on:
